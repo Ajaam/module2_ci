@@ -30,10 +30,10 @@ pipeline{
 			}
 			stage('CodeQuality - SAST'){
 				steps{
-					mvn clean verify sonar:sonar \
+					sh 'mvn clean verify sonar:sonar \
   					-Dsonar.projectKey=devsecops-spring-app \
  					-Dsonar.host.url=http://ajaam-tech.eastus.cloudapp.azure.com:9000 \
- 					-Dsonar.login=14e42642df690102d1dbc9a26005e6c1c22cba04
+ 					-Dsonar.login=14e42642df690102d1dbc9a26005e6c1c22cba04'
 				}
 			}	
 		} 

@@ -31,21 +31,21 @@ pipeline{
 				}
 			}
 			stage('Mutation Tests - PIT'){
-     				steps{
-      					sh "mvn org.pitest:pitest-maven:mutationCoverage"
+  				steps{
+   					sh "mvn org.pitest:pitest-maven:mutationCoverage"
     					}
-     				post {
-        				always {
-          					pitmutation mutationStatsFile: '**/target/pit-reports/**/mutations.xml'
-       					}
-     				}
+ //    				post {
+ //       				always {
+ //         					pitmutation mutationStatsFile: '**/target/pit-reports/**/mutations.xml'
+ //      					}
+ //    				}
    			}
 			stage('CodeQuality - SAST'){
 				steps{
 					sh 'mvn clean verify sonar:sonar \
   					-Dsonar.projectKey=devsecops-spring-app \
  					-Dsonar.host.url=http://ajaam-tech.eastus.cloudapp.azure.com:9000 \
- 					-Dsonar.login=14e42642df690102d1dbc9a26005e6c1c22cba04'
+ 					--Dsonar.login=6a1ab06cdd2d6c779012aa60f077576d0d2465da
 				}
 			}	
 		} 
